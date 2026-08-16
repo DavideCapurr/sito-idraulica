@@ -1,0 +1,44 @@
+name: Vendor production assets
+
+on:
+  push:
+    branches: [add-package-lock]
+
+permissions:
+  contents: write
+
+jobs:
+  vendor:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: add-package-lock
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Download exact production assets
+        run: node scripts/fetch-assets.mjs
+
+      - name: Verify assets
+        run: |
+          test -s public/favicon.ico
+          test -s public/assets/brand/logo-hydrotech.svg
+          for name in hero-installation sanitari riscaldamento irrigazione ricerca-perdite ristrutturazione-bagni manutenzione; do
+            test -s "public/assets/images/$name.jpg"
+            test -s "public/assets/images/$name.webp"
+            test -s "public/assets/images/$name.avif"
+          done
+
+      - name: Commit assets and remove temporary workflow
+        run: |
+          rm .github/workflows/vendor-assets.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public .github/workflows/vendor-assets.yml
+          git commit -m "Vendor Hydrotech production assets"
+          git push origin HEAD:add-package-lock
