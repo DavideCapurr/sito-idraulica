@@ -19,9 +19,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 24
+          cache: npm
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Astro check
         run: npm run check
@@ -34,6 +35,10 @@ jobs:
 
       - name: Smoke test production output
         run: |
+          test -s package-lock.json
+          test -s public/favicon.ico
+          test -s public/assets/brand/logo-hydrotech.svg
+          test -s public/assets/images/hero-installation.webp
           test -s dist/index.html
           test -s dist/de/index.html
           test -s dist/contatti/index.html
@@ -52,5 +57,9 @@ jobs:
           grep -q 'hreflang="de"' dist/sitemap.xml
           if grep -R -q 'Richiedi preventivo' dist --include='*.html'; then
             echo 'Found stale CTA copy'
+            exit 1
+          fi
+          if grep -q 'sync-assets' package.json; then
+            echo 'Build still depends on remote asset bootstrap'
             exit 1
           fi
