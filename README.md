@@ -1,6 +1,6 @@
 # Hydrotech Service Sagl
 
-Source repository for the Hydrotech Service website.
+Production source for the Hydrotech Service website.
 
 ## Stack
 
@@ -12,24 +12,14 @@ Source repository for the Hydrotech Service website.
 
 ## Assets
 
-The recovered visual assets are bootstrapped during development and production builds by:
+All production assets are committed directly under `public/`, including the favicon, Hydrotech logo and JPG/WebP/AVIF versions of the site imagery.
 
-```bash
-npm run sync-assets
-```
-
-The bootstrap checks these origins in order:
-
-1. `HYDROTECH_ASSET_ORIGIN` when explicitly configured
-2. the surviving Vercel deployment
-3. the production domain
-
-A missing asset now fails the build instead of producing a successful deployment with broken images. Once the binary assets are committed directly to this repository, the bootstrap step can be removed.
+The build is self-contained and does not download assets from the old website or from a previous Vercel deployment.
 
 ## Local development
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
@@ -40,7 +30,7 @@ npm run check
 npm run build
 ```
 
-GitHub Actions also validates the production output, required assets, current office address/hours, bilingual sitemap metadata and confirmation pages.
+GitHub Actions uses the committed `package-lock.json` with `npm ci` and validates the production output, required source and built assets, current office address/hours, bilingual sitemap metadata, confirmation pages and absence of stale CTA copy.
 
 ## Quote form
 
