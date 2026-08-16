@@ -7,6 +7,7 @@ const c = copy[lang];
 const prefix = lang === 'de' ? '/de' : '';
 const canonical = `${business.canonical}${canonicalPath}`;
 const alternateLang = lang === 'it' ? 'de' : 'it';
+const weekdays = ['Monday','Tuesday','Wednesday','Thursday','Friday'];
 const schema = {
   '@context':'https://schema.org',
   '@type':'Plumber',
@@ -25,12 +26,10 @@ const schema = {
     addressRegion:'Ticino',
     addressCountry:'CH'
   },
-  openingHoursSpecification:[{
-    '@type':'OpeningHoursSpecification',
-    dayOfWeek:['Monday','Tuesday','Wednesday','Thursday','Friday'],
-    opens:'08:00',
-    closes:'17:00'
-  }],
+  openingHoursSpecification:[
+    {'@type':'OpeningHoursSpecification',dayOfWeek:weekdays,opens:'08:00',closes:'12:00'},
+    {'@type':'OpeningHoursSpecification',dayOfWeek:weekdays,opens:'13:30',closes:'17:00'}
+  ],
   areaServed:['Ticino','Locarno','Bellinzona','Lugano','Ascona','Solduno'].map(name=>({'@type':'Place',name}))
 };
 ---
