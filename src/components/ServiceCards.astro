@@ -1,0 +1,5 @@
+---
+import { services, type Lang } from '../data/site';
+const { lang, exclude } = Astro.props as {lang:Lang; exclude?:string}; const shown = services.filter(s=>s.id!==exclude);
+---
+<div class="service-grid">{shown.map((s,i)=><a class="service-card" href={lang==='it'?`/${s.itSlug}/`:`/de/${s.deSlug}/`}><span class="service-icon" aria-hidden="true">{i+1}</span><span><h3>{s[lang].name}</h3><p>{s[lang].description}</p></span></a>)}</div>

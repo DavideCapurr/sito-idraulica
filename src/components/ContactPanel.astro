@@ -1,0 +1,5 @@
+---
+import { business, type Lang } from '../data/site';
+const { lang } = Astro.props as {lang:Lang}; const de = lang === 'de';
+---
+<aside class="contact-panel"><h2>{de?'Kontakt':'Contattaci'}</h2><ul class="contact-list"><li><a href={business.phoneHref}>{business.phone}</a><span>{de?'Büro Telefon':'Telefono ufficio'}</span></li><li><a href={business.urgentPhoneHref}>{business.urgentPhone}</a><span>{de?'Reparaturen und dringende Fälle':'Riparazioni e urgenze'}</span></li><li><a href={`mailto:${business.email}`}>{business.email}</a><span>E-mail</span></li><li><strong>Via Vecchio Forno 2<br/>CH-6604 Solduno</strong><span>{de?'Adresse':'Indirizzo'}</span></li><li><strong>{de?'Montag-Freitag':'Lunedì-Venerdì'}<br/>8:00 – 12:00 / 13:00 – 17:00</strong><span>{de?'Samstag nach Vereinbarung':'Sabato su appuntamento'}</span></li></ul></aside>
