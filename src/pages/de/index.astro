@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import QuoteForm from '../../components/QuoteForm.astro';
+import ContactPanel from '../../components/ContactPanel.astro';
+import ServiceCards from '../../components/ServiceCards.astro';
+import { business, copy } from '../../data/site';
+const c = copy.de;
+---
+<BaseLayout lang="de" title="Hydrotech Service Sagl | Sanitär, Heizung und Bewässerung im Tessin" description="Hydrotech Service Sagl in Solduno: Sanitärinstallationen, Heizung, Bewässerung, Leckortung, Badsanierung und Wartung im Tessin." canonicalPath="/de/" alternatePath="/">
+<section class="hero"><div class="container hero-grid"><div class="hero-copy"><h1>{c.homeTitle}</h1><p>{c.homeLead}</p><div class="hero-actions"><a class="button" href="#preventivo">{c.quote}</a><a class="button secondary" href={business.phoneHref}>Anrufen {business.phone}</a></div></div><picture class="hero-media"><source srcset="/assets/images/hero-installation.avif" type="image/avif"/><source srcset="/assets/images/hero-installation.webp" type="image/webp"/><img src="/assets/images/hero-installation.jpg" alt="Saubere technische Installation von Hydrotech Service" width="900" height="675" fetchpriority="high"/></picture></div></section>
+<section class="section" id="servizi"><div class="container"><div class="section-head"><h2>{c.areas}</h2><p>{c.areasLead}</p></div><ServiceCards lang="de"/></div></section>
+<section class="section soft"><div class="container"><div class="section-head"><h2>{c.experience}</h2></div><div class="stats-grid"><div class="stat"><strong>15+</strong><span>Jahre Erfahrung</span></div><div class="stat"><strong>400+</strong><span>realisierte Anlagen</span></div><div class="stat"><strong>200+</strong><span>betreute Anlagen</span></div><div class="stat"><strong>Tessin</strong><span>Locarno, Bellinzona, Lugano</span></div></div></div></section>
+<section class="section"><div class="container"><div class="section-head"><h2>{c.process}</h2></div><div class="process-grid">{c.processSteps.map(([t,p])=><div class="process-step"><strong>{t}</strong><p>{p}</p></div>)}</div></div></section>
+<section class="section soft"><div class="container quote-section"><QuoteForm lang="de" source="home-de"/><ContactPanel lang="de"/></div></section>
+</BaseLayout>

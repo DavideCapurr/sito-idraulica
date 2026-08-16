@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import QuoteForm from '../components/QuoteForm.astro';
+import ContactPanel from '../components/ContactPanel.astro';
+import ServiceCards from '../components/ServiceCards.astro';
+import { business, copy } from '../data/site';
+const c = copy.it;
+---
+<BaseLayout lang="it" title="Hydrotech Service Sagl | Idraulica, riscaldamento e irrigazione in Ticino" description="Hydrotech Service Sagl a Solduno: impianto sanitario, riscaldamento, irrigazione, ricerca perdite, ristrutturazione bagni e manutenzione in Ticino." canonicalPath="/" alternatePath="/de/">
+<section class="hero"><div class="container hero-grid"><div class="hero-copy"><h1>{c.homeTitle}</h1><p>{c.homeLead}</p><div class="hero-actions"><a class="button" href="#preventivo">{c.quote}</a><a class="button secondary" href={business.phoneHref}>Chiama {business.phone}</a></div></div><picture class="hero-media"><source srcset="/assets/images/hero-installation.avif" type="image/avif"/><source srcset="/assets/images/hero-installation.webp" type="image/webp"/><img src="/assets/images/hero-installation.jpg" alt="Impianto tecnico idraulico curato da Hydrotech Service" width="900" height="675" fetchpriority="high"/></picture></div></section>
+<section class="section" id="servizi"><div class="container"><div class="section-head"><h2>{c.areas}</h2><p>{c.areasLead}</p></div><ServiceCards lang="it"/></div></section>
+<section class="section soft"><div class="container"><div class="section-head"><h2>{c.experience}</h2></div><div class="stats-grid"><div class="stat"><strong>15+</strong><span>anni di esperienza</span></div><div class="stat"><strong>400+</strong><span>impianti creati</span></div><div class="stat"><strong>200+</strong><span>impianti gestiti</span></div><div class="stat"><strong>Ticino</strong><span>Locarno, Bellinzona, Lugano</span></div></div></div></section>
+<section class="section"><div class="container"><div class="section-head"><h2>{c.process}</h2></div><div class="process-grid">{c.processSteps.map(([t,p])=><div class="process-step"><strong>{t}</strong><p>{p}</p></div>)}</div></div></section>
+<section class="section soft"><div class="container quote-section"><QuoteForm lang="it" source="home-it"/><ContactPanel lang="it"/></div></section>
+</BaseLayout>
