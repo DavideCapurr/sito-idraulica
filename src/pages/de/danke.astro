@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { business } from '../../data/site';
+---
+<BaseLayout lang="de" title="Anfrage gesendet | Hydrotech Service Sagl" description="Ihre Anfrage wurde an Hydrotech Service Sagl gesendet." canonicalPath="/de/danke/" alternatePath="/grazie/" robots="noindex,nofollow">
+  <section class="page-hero">
+    <div class="container confirmation-panel">
+      <p class="eyebrow">Anfrage gesendet</p>
+      <h1>Vielen Dank. Wir haben Ihre Nachricht erhalten.</h1>
+      <p>Wir melden uns so schnell wie möglich. In dringenden Fällen können Sie uns direkt anrufen.</p>
+      <div class="hero-actions">
+        <a class="button" href={business.phoneHref}>Anrufen {business.phone}</a>
+        <a class="button secondary" href="/de/">Zur Startseite</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
