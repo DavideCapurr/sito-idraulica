@@ -28,3 +28,29 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      - name: Validate Vercel config
+        run: node -e "JSON.parse(require('fs').readFileSync('vercel.json','utf8'))"
+
+      - name: Smoke test production output
+        run: |
+          test -s dist/index.html
+          test -s dist/de/index.html
+          test -s dist/contatti/index.html
+          test -s dist/de/kontakt/index.html
+          test -s dist/grazie/index.html
+          test -s dist/de/danke/index.html
+          test -s dist/sitemap.xml
+          test -s dist/robots.txt
+          test -s dist/favicon.ico
+          test -s dist/assets/brand/logo-hydrotech.svg
+          test -s dist/assets/images/hero-installation.webp
+          grep -q 'Via Vallemaggia 54' dist/contatti/index.html
+          grep -q '13:30' dist/contatti/index.html
+          grep -q 'Richiedi informazioni' dist/index.html
+          grep -q 'noindex,nofollow' dist/grazie/index.html
+          grep -q 'hreflang="de"' dist/sitemap.xml
+          if grep -R -q 'Richiedi preventivo' dist --include='*.html'; then
+            echo 'Found stale CTA copy'
+            exit 1
+          fi
