@@ -1,0 +1,23 @@
+{
+  "name": "hydrotech-service-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "sync-assets": "node scripts/fetch-assets.mjs",
+    "predev": "npm run sync-assets",
+    "dev": "astro dev",
+    "prebuild": "npm run sync-assets",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "astro": "^5.13.2",
+    "typescript": "^5.9.2"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.0"
+  }
+}
