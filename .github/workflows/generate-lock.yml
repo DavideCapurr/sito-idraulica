@@ -1,8 +1,8 @@
 name: Generate package lock
 
 on:
-  push:
-    branches: [add-package-lock]
+  pull_request:
+    branches: [main]
 
 permissions:
   contents: write
