@@ -1,0 +1,28 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    { "source": "/sanitari.html", "destination": "/impianto-sanitario/", "permanent": true },
+    { "source": "/riscaldamento.html", "destination": "/riscaldamento/", "permanent": true },
+    { "source": "/irrigazione.html", "destination": "/irrigazione/", "permanent": true },
+    { "source": "/riparazioni-e-manutenzioni.html", "destination": "/riparazioni-manutenzione/", "permanent": true },
+    { "source": "/protezione-dei-dati.html", "destination": "/protezione-dei-dati/", "permanent": true },
+    { "source": "/home-deutsch.html", "destination": "/de/", "permanent": true },
+    { "source": "/sanitär.html", "destination": "/de/sanitaerinstallationen/", "permanent": true },
+    { "source": "/sanitaer.html", "destination": "/de/sanitaerinstallationen/", "permanent": true },
+    { "source": "/heizung.html", "destination": "/de/heizung/", "permanent": true },
+    { "source": "/bewässerung.html", "destination": "/de/bewaesserung/", "permanent": true },
+    { "source": "/bewaesserung.html", "destination": "/de/bewaesserung/", "permanent": true },
+    { "source": "/reparaturen-und-wartungsarbeiten.html", "destination": "/de/reparaturen-wartung/", "permanent": true },
+    { "source": "/datenschutz.html", "destination": "/de/datenschutz/", "permanent": true }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
+      ]
+    }
+  ]
+}
